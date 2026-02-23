@@ -2,4 +2,4 @@ from fastapi import FastAPI
 
 app=FastAPI()
 
-from api.routes import upload_file
+from api import upload_file
