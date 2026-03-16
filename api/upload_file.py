@@ -9,7 +9,7 @@ from database import get_db
 
 
 @app.post("/upload_csv")
-async def upload_csv(file: UploadFile=File(media_type='text/csv'), metadata: str =Form(), db: AsyncSession = Depends(get_db)):
+async def upload_csv(file: UploadFile=File(), metadata: str =Form(), db: AsyncSession = Depends(get_db)):
     if file.content_type != "text/csv":
         raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail=f"{file.content_type} is not supported, only CSV allowed")
     try:
