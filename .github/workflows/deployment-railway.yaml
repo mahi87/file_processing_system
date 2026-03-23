@@ -4,6 +4,18 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: railway up -e production -p d07bd007-3d24-4070-9053-b54a065420d8 -s file-processing-service
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+        
+      - name: Deploy to Railway
+        run: railway up -e production -p d07bd007-3d24-4070-9053-b54a065420d8 -s file-processing-service
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
