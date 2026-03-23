@@ -1,0 +1,9 @@
+name: Railway Deployment
+on: [workflow_dispatch]
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: railway up -e production -p d07bd007-3d24-4070-9053-b54a065420d8 -s file-processing-service
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
